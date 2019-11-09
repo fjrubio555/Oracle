@@ -1,8 +1,8 @@
 SET TERMOUT OFF
 SET ECHO OFF
--- Otorgamos al usario NEOCAR los privilegios del sistema (conexión, recursos, dba, y tablespaces ilimitado) y le asignamos la contraseña. 
+-- Otorgamos al usario MODULO los privilegios del sistema (conexiÃ³n, recursos, dba, y tablespaces ilimitado) y le asignamos la contraseÃ±a. 
 GRANT CONNECT,RESOURCE,DBA,UNLIMITED TABLESPACE TO MODULO IDENTIFIED BY MODULO;
--- Modificamos el usuario NEOCAR le indicando cual va a ser su tablespaces por defecto y el temporal.
+-- Modificamos el usuario MODULO le indicando cual va a ser su tablespaces por defecto y el temporal.
 ALTER USER MODULO DEFAULT TABLESPACE USERS;
 ALTER USER MODULO TEMPORARY TABLESPACE TEMP;
 -- Conectamos el Usuario.
@@ -38,19 +38,19 @@ CREATE TABLE NOTAS
 ) 
 
 INSERT INTO ASIGNATURAS VALUES (1,'Prog. Leng. Estr.');
-INSERT INTO ASIGNATURAS VALUES (2,'Sist. Informáticos');
-INSERT INTO ASIGNATURAS VALUES (3,'Análisis');
+INSERT INTO ASIGNATURAS VALUES (2,'Sist. InformÃ¡ticos');
+INSERT INTO ASIGNATURAS VALUES (3,'AnÃ¡lisis');
 INSERT INTO ASIGNATURAS VALUES (4,'FOL');
 INSERT INTO ASIGNATURAS VALUES (5,'RET');
-INSERT INTO ASIGNATURAS VALUES (6,'Entornos Gráficos');
-INSERT INTO ASIGNATURAS VALUES (7,'Aplic. Entornos 4ªGen');
+INSERT INTO ASIGNATURAS VALUES (6,'Entornos GrÃ¡ficos');
+INSERT INTO ASIGNATURAS VALUES (7,'Aplic. Entornos 4ÂªGen');
 
 INSERT INTO ALUMNOS VALUES
-('12344345','Alcalde García, Elena', 'C/Las Matas, 24','Madrid','917766545');
+('12344345','Alcalde GarcÃ­a, Elena', 'C/Las Matas, 24','Madrid','917766545');
 INSERT INTO ALUMNOS VALUES
 ('4448242','Cerrato Vela, Luis', 'C/Mina 28 - 3A', 'Madrid','916566545');
 INSERT INTO ALUMNOS VALUES
-('56882942','Díaz Fernández, María', 'C/Luis Vives 25', 'Móstoles','915577545');
+('56882942','DÃ­az FernÃ¡ndez, MarÃ­a', 'C/Luis Vives 25', 'MÃ³stoles','915577545');
 
 INSERT INTO NOTAS VALUES('12344345', 1, 6);
 INSERT INTO NOTAS VALUES('12344345', 2, 5);
@@ -64,10 +64,10 @@ INSERT INTO NOTAS VALUES('56882942', 5, 7);
 INSERT INTO NOTAS VALUES('56882942', 6, 8);
 INSERT INTO NOTAS VALUES('56882942', 7, 9);
 COMMIT;
-/* 3.1 Crear un procedimiento que introducciendo el nombre de uno de los módulos
+/* 3.1 Crear un procedimiento que introducciendo el nombre de uno de los mÃ³dulos
 muestre los alumnos que lo han cursoado y sus notal. Cantidad suspensos,
-aprovados, notables y sobresalientes. Al final deben aparecer también 
-el nombre y la nota de los alumnos con la nota más alta y más baja.
+aprovados, notables y sobresalientes. Al final deben aparecer tambiÃ©n 
+el nombre y la nota de los alumnos con la nota mÃ¡s alta y mÃ¡s baja.
 */
 CREATE OR REPLACE PROCEDURE Nombrar_Modulo (nombre_modulo ASIGNATURAS.NOMBRE%TYPE) IS
 num_susp NUMBER:=0;
@@ -104,7 +104,7 @@ BEGIN
        CLOSE cursornotas;
        MostrarResultados(num_susp, num_aprob, num_not, num_sob, mejor_alum, mejor_nota, peor_alum, peor_nota);
     ELSE
-      SYS.DBMS_OUTPUT.PUT_LINE('Nombre del módulo incorrecto.');
+      SYS.DBMS_OUTPUT.PUT_LINE('Nombre del mÃ³dulo incorrecto.');
     END IF;
 END Nombrar_Modulo;
 
